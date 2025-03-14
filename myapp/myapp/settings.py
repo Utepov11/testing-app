@@ -2,19 +2,21 @@ from pathlib import Path
 import environ
 import os
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+# Инициализация django-environ
 env = environ.Env(
-    DEBVUG=(bool, False)
+    DEBUG=(bool, False)
 )
 
+# Чтение .env файла
 environ.Env.read_env(BASE_DIR / '.env')
 
-SECRET_KEY = env("DJANGO_SECRET_KEY")
+# Чтение настроек из .env
+SECRET_KEY = env("DJANGO_SECRET_KEY")  # Используем django-environ для чтения ключа
 DEBUG = True
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1").split()
+
 
 
 # Application definition
