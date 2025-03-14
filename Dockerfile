@@ -18,4 +18,4 @@ COPY . /app/
 EXPOSE 4000
 
 # Запускаем Gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:4000", "myapp.wsgi:application"]
+# CMD ["gunicorn", "--bind", "0.0.0.0:4000", "myapp.wsgi:application"]

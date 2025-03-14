@@ -1,9 +1,14 @@
 services:
+
   web:
     build:
-      context: .
+      context: .  # Указываем корневую папку проекта
     container_name: testing_app
+    command: gunicorn --bind 0.0.0.0:4000 myapp.wsgi:application
     ports:
       - "4000:4000"
     env_file:
-      - .env
+      - .env  # Подключаем .env файл для Docker
+
+volumes:
+  pgdata:
