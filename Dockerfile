@@ -16,4 +16,4 @@ COPY . /app/
 
 EXPOSE 4000
 
-CMD ["gunicorn", "--bind", "0.0.0.0:4000", "my_docker_app.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:4000", "myapp.wsgi:application"]
