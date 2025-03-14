@@ -1,0 +1,13 @@
+services:
+  web:
+    build:
+      context: .  # Указываем корневую папку проекта
+    container_name: django_app
+    command: gunicorn --bind 0.0.0.0:4000 my_docker_app.wsgi:application
+    ports:
+      - "4000:4000"
+    env_file:
+      - .env  # Подключаем .env файл для Docker
+
+volumes:
+  pgdata:
