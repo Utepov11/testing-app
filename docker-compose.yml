@@ -1,13 +1,30 @@
 services:
+  db:
+    image: postgres:16
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_DB: devsrch
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Chicago2
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
   web:
     build:
       context: .  # Указываем корневую папку проекта
-    container_name: testing_app
+    container_name: django_app
     command: gunicorn --bind 0.0.0.0:4000 myapp.wsgi:application
     ports:
       - "4000:4000"
+    depends_on:
+      - db
     env_file:
       - .env  # Подключаем .env файл для Docker
+    environment:
+      - DATABASE_URL=postgres://postgres:Chicago23@db:5432/devsrch
 
 volumes:
   pgdata:
