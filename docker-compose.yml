@@ -8,8 +8,6 @@ services:
       - "4000:4000"
     env_file:
       - .env  # Подключаем .env файл для Docker
-    environment:
-      - DATABASE_URL=postgres://postgres:Chicago23@db:5432/devsrch
 
 volumes:
   pgdata:
