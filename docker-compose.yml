@@ -1,16 +1,4 @@
 services:
-  db:
-    image: postgres:16
-    container_name: postgres_db
-    restart: always
-    environment:
-      POSTGRES_DB: devsrch
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: Chicago2
-    ports:
-      - "5433:5432"
-    volumes:
-      - pgdata:/var/lib/postgresql/data
 
   web:
     build:
@@ -23,8 +11,6 @@ services:
       - db
     env_file:
       - .env  # Подключаем .env файл для Docker
-    environment:
-      - DATABASE_URL=postgres://postgres:Chicago23@db:5432/devsrch
 
 volumes:
   pgdata:
