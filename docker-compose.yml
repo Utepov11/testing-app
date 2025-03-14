@@ -3,11 +3,13 @@ services:
     build:
       context: .  # Указываем корневую папку проекта
     container_name: django_app
-    command: gunicorn --bind 0.0.0.0:4000 my_docker_app.wsgi:application
+    command: gunicorn --bind 0.0.0.0:4000 myapp.wsgi:application
     ports:
       - "4000:4000"
     env_file:
       - .env  # Подключаем .env файл для Docker
+    environment:
+      - DATABASE_URL=postgres://postgres:Chicago23@db:5432/devsrch
 
 volumes:
   pgdata:
